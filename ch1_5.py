@@ -1,5 +1,5 @@
 import sys
-import urllib.request
+import urllib.request as req
 import urllib.parse
 
 if len(sys.argv) <= 1:
@@ -18,6 +18,6 @@ param = urllib.parse.urlencode(values)
 url = API + "?" + param
 print("url=", url)
 
-data = urllib.request.urlopen(url).read()
+data = req.urlopen(url).read()
 text = data.decode("utf-8")
 print(text)

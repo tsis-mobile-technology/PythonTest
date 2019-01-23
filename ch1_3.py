@@ -1,7 +1,7 @@
-import urllib.request
+import urllib.request as req
 
 url = "http://gw.tbroad.com/"
-res = urllib.request.urlopen(url)
+res = req.urlopen(url)
 # data = res.read()
 # text = data.decode("utf-8")
 # print(text)

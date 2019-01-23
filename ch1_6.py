@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
-import urllib.request
+import urllib.request as req
 
 #url = "http://gw.tbroad.com/"
 url = "http://m.exchange.daum.net/mobile/exchange/exchangeMain.daum"
-res = urllib.request.urlopen(url)
+res = req.urlopen(url)
 data = res.read()
 text = data.decode("utf-8")
 #print(text)
@@ -30,3 +30,4 @@ for img_src in img:
 
 tag = soup.div
 print(tag)
+

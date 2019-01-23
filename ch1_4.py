@@ -1,4 +1,4 @@
-import urllib.request
+import urllib.request as req
 import urllib.parse
 
 API = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp"
@@ -12,6 +12,6 @@ param = urllib.parse.urlencode(values)
 url = API + "?" + param
 print("url=", url)
 
-data = urllib.request.urlopen(url).read()
+data = req.urlopen(url).read()
 text = data.decode("utf-8")
 print(text)

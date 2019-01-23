@@ -1,7 +1,7 @@
-import urllib.request
+import urllib.request as req
 
 url = "http://uta.pw/shodou/img/28/214.png"
 savename = "test.png"
 
-urllib.request.urlretrieve(url, savename)
+req.urlretrieve(url, savename)
 print("saving ok")
