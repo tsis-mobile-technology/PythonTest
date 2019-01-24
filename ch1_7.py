@@ -10,8 +10,8 @@ res = req.urlopen(url).read().decode(req.urlopen(url).headers.get_content_charse
 soup = BeautifulSoup(res, 'html.parser')
 
 # #toc > ul > li.toclevel-1.tocsection-2
-a_list = soup.select("#toc > ul > li span ")
-# print(a_list)
+a_list = soup.select("#toc > ul > li span.toctext")
+print(a_list)
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
 #print(sys.getdefaultencoding())
