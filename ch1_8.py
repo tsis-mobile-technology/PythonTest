@@ -9,6 +9,8 @@ import os.path, time, re
 
 # 이미 처리한 파일인지 확인하기 위한 변수
 proc_files = {}
+# 서브 디렉토리에 대해 처리
+sub_proc_dirs = []
 
 # HTML 내부에 있는 링크를 추출하는 함수
 def enum_links(html, base):
@@ -36,12 +38,14 @@ def download_file(url):
     # 다운받을 폴더 생성
     if not os.path.exists(savedir):
         print("mkdir=", savedir)
+        subpath = o.scheme + "://" + o.netloc + o.path
+        sub_proc_dirs.append(os.path.dirname(subpath)+"/")
         makedirs(savedir)
     # 파일 다운받기
     try:
         print("download=", url)
         urllib.request.urlretrieve(url, savepath)
-        time.sleep(1) # 1초 휴식
+        time.sleep(0.2) # 1초 휴식
         return savepath
     except:
         print("dowload fail：", url)
@@ -74,5 +78,12 @@ def analize_html(url, root_url):
 
 if __name__ == "__main__":
     # URL에 있는 모든것 다운받기
-    url = "https://docs.python.org/3.7/library/"
+    #url = "https://docs.python.org/3.7/library/"
+    url = "https://docs.python.org/3.7/"
     analize_html(url, url)
+
+    for sub_url in sub_proc_dirs:
+        print(">>>>>>>sub_url:" + sub_url)
+        # 링크가 루트 이외의 경로를 나타낸다면 무시
+        if not sub_url in proc_files:
+            analize_html(sub_url, sub_url)
